@@ -2,6 +2,7 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
+const authMiddleware = require("../middleware/authmiddleware");
 
 const User = require("../models/user");
 
@@ -56,6 +57,13 @@ router.post("/login", async (req, res) => {
       token: token,
     });
   }
+});
+
+router.get("/protected", authMiddleware, (req, res) => {
+  res.json({
+    message: "You are authenticated",
+    userId: req.userId,
+  });
 });
 
 module.exports = router;
