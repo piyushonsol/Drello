@@ -20,7 +20,9 @@ mongoose
   });
 
 const authRoutes = require("./routes/authRoutes");
+const boardRoutes = require("./routes/boardRoutes");
 app.use("/api/auth", authRoutes);
+app.use("/api/boards", boardRoutes);
 
 app.listen(5000, () => {
   console.log("Server running on port 5000");
