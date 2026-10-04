@@ -22,7 +22,9 @@ mongoose
 const authRoutes = require("./routes/authRoutes");
 const boardRoutes = require("./routes/boardRoutes");
 const listRoutes = require("./routes/ListRoutes");
+const cardRoutes = require("./routes/cardRoutes");
 
+app.use("/api/cards", cardRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/boards", boardRoutes);
 app.use("/api/lists", listRoutes);
