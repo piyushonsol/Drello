@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const Board = require("../models/Board");
-const authMiddleware = require("../middleware/authmiddleware");
+const authMiddleware = require("../middleware/authMiddleware");
 
 router.post("/", authMiddleware, async (req, res) => {
   console.log(req.body);

@@ -1,0 +1,171 @@
+.auth-page {
+  min-height: 100vh;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  background: #f2efe8;
+  color: #171717;
+}
+
+.auth-left {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 35px 6vw;
+
+  background: #171717;
+  color: #f2efe8;
+}
+
+.auth-brand {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.auth-message {
+  margin-top: auto;
+  margin-bottom: auto;
+
+  max-width: 650px;
+}
+
+.auth-message h1 {
+  margin: 0;
+
+  font-size: clamp(60px, 7vw, 110px);
+  line-height: 0.88;
+  letter-spacing: -6px;
+}
+
+.auth-message p:last-child {
+  max-width: 400px;
+
+  margin-top: 35px;
+
+  font-size: 17px;
+  line-height: 1.5;
+
+  opacity: 0.6;
+}
+
+.auth-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 60px;
+}
+
+.auth-box {
+  width: 100%;
+  max-width: 430px;
+}
+
+.auth-label {
+  margin: 0 0 15px;
+
+  font-size: 10px;
+  letter-spacing: 3px;
+
+  opacity: 0.5;
+}
+
+.auth-box h2 {
+  margin: 0 0 45px;
+
+  font-size: 48px;
+  line-height: 1;
+  letter-spacing: -3px;
+}
+
+.input-group {
+  margin-bottom: 22px;
+}
+
+.input-group label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  opacity: 0.6;
+}
+
+.input-group input {
+  width: 100%;
+
+  padding: 15px 0;
+
+  border: none;
+  border-bottom: 1px solid rgba(23, 23, 23, 0.25);
+
+  background: transparent;
+
+  outline: none;
+
+  font-size: 16px;
+}
+
+.input-group input:focus {
+  border-bottom-color: #171717;
+}
+
+.input-or {
+  margin: 8px 0 22px;
+
+  font-size: 9px;
+  letter-spacing: 2px;
+
+  opacity: 0.35;
+}
+
+.auth-button {
+  width: 100%;
+
+  margin-top: 15px;
+
+  padding: 16px;
+
+  border: none;
+  border-radius: 999px;
+
+  background: #171717;
+  color: #f2efe8;
+
+  font-size: 14px;
+
+  cursor: pointer;
+}
+
+.auth-button:hover {
+  opacity: 0.9;
+}
+
+.auth-error {
+  margin: 15px 0;
+
+  font-size: 13px;
+  color: #a33;
+}
+
+.auth-switch {
+  margin-top: 25px;
+
+  text-align: center;
+
+  font-size: 13px;
+
+  opacity: 0.55;
+}
+
+.auth-switch a {
+  color: inherit;
+  font-weight: 600;
+}

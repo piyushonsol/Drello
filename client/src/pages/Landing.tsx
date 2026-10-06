@@ -238,6 +238,194 @@ function Landing() {
           </p>
         </div>
       </section>
+
+      {/* PRODUCT PREVIEW SECTION */}
+      <section className="product-section">
+        <div className="product-header">
+          <div>
+            <p className="section-label">THE PRODUCT</p>
+
+            <h2>
+              SEE THE PLAN.
+              <br />
+              SEE THE PROGRESS.
+            </h2>
+          </div>
+
+          <p className="product-intro">
+            A workspace where your plans can move, evolve, and change without
+            losing the story behind them.
+          </p>
+        </div>
+
+        <div className="product-preview">
+          <div className="product-topbar">
+            <div className="product-brand">DRELLO</div>
+
+            <div className="product-board-name">DSA PREPARATION</div>
+
+            <div className="product-user">PK</div>
+          </div>
+
+          <div className="kanban">
+            {/* TODO */}
+            <div className="kanban-column">
+              <div className="column-header">
+                <span>TO DO</span>
+                <span>03</span>
+              </div>
+
+              <div className="kanban-card">
+                <h3>Learn Dynamic Programming</h3>
+                <p>Understand the basic patterns.</p>
+
+                <div className="card-footer">
+                  <span>2 changes</span>
+                  <span>Today</span>
+                </div>
+              </div>
+
+              <div className="kanban-card">
+                <h3>Revise Graph Algorithms</h3>
+                <p>DFS, BFS and shortest paths.</p>
+
+                <div className="card-footer">
+                  <span>1 change</span>
+                  <span>2 days</span>
+                </div>
+              </div>
+
+              <div className="kanban-card">
+                <h3>Solve 5 DP Problems</h3>
+
+                <div className="card-footer">
+                  <span>4 changes</span>
+                  <span>5 days</span>
+                </div>
+              </div>
+            </div>
+
+            {/* IN PROGRESS */}
+            <div className="kanban-column">
+              <div className="column-header">
+                <span>IN PROGRESS</span>
+                <span>02</span>
+              </div>
+
+              <div className="kanban-card active-card">
+                <h3>Binary Trees</h3>
+                <p>Practice traversal and recursion.</p>
+
+                <div className="card-footer">
+                  <span>3 changes</span>
+                  <span>7 days</span>
+                </div>
+              </div>
+
+              <div className="kanban-card active-card">
+                <h3>Linked Lists</h3>
+
+                <div className="card-footer">
+                  <span>2 changes</span>
+                  <span>4 days</span>
+                </div>
+              </div>
+            </div>
+
+            {/* COMPLETED */}
+            <div className="kanban-column">
+              <div className="column-header">
+                <span>COMPLETED</span>
+                <span>02</span>
+              </div>
+
+              <div className="kanban-card completed-card">
+                <h3>Arrays</h3>
+                <p>Patterns and common problems.</p>
+
+                <div className="card-footer">
+                  <span>5 changes</span>
+                  <span>12 days</span>
+                </div>
+              </div>
+
+              <div className="kanban-card completed-card">
+                <h3>Linked List Basics</h3>
+
+                <div className="card-footer">
+                  <span>2 changes</span>
+                  <span>6 days</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="product-caption">
+          <span>YOUR WORKSPACE</span>
+          <span>YOUR PLAN</span>
+          <span>YOUR HISTORY</span>
+        </div>
+      </section>
+
+      {/* FINAL CTA */}
+      <section className="final-cta">
+        <div className="final-cta-content">
+          <p className="section-label">READY WHEN YOU ARE</p>
+
+          <h2>
+            MAKE THE PLAN.
+            <br />
+            CHANGE THE PLAN.
+            <br />
+            KEEP MOVING.
+          </h2>
+
+          <button className="final-cta-button">Get Started</button>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="footer">
+        <div className="footer-top">
+          <div className="footer-brand">
+            <div className="footer-logo">DRELLO</div>
+
+            <p className="footer-tagline">
+              Built for plans.
+              <br />
+              Designed for progress.
+            </p>
+          </div>
+
+          <div className="footer-links">
+            <div>
+              <span>PRODUCT</span>
+              <a href="#features">Features</a>
+              <a href="#about">About</a>
+            </div>
+
+            <div>
+              <span>ACCOUNT</span>
+              <a href="/login">Login</a>
+              <a href="/signup">Sign up</a>
+            </div>
+          </div>
+        </div>
+
+        <div className="footer-bottom">
+          <div>
+            <span>© 2026 DRELLO</span>
+            <span>BUILT WITH MERN</span>
+          </div>
+
+          <div className="footer-maker">
+            <span>MADE BY</span>
+            <strong>PIYUSH KUMAR SINGH</strong>
+            <em>From brute force to brutal.</em>
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }

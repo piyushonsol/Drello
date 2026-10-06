@@ -489,3 +489,388 @@ body {
 
   opacity: 0.6;
 }
+
+/* =========================
+   PRODUCT SECTION
+========================= */
+
+.product-section {
+  min-height: 100vh;
+
+  padding: 140px 6vw;
+
+  background: #f2efe8;
+  color: #171717;
+}
+
+.product-header {
+  display: grid;
+  grid-template-columns: 1.4fr 0.6fr;
+
+  gap: 8vw;
+
+  align-items: end;
+}
+
+.product-header h2 {
+  margin: 0;
+
+  font-size: clamp(55px, 8vw, 120px);
+  line-height: 0.88;
+  letter-spacing: -6px;
+  font-weight: 800;
+}
+
+.product-intro {
+  max-width: 380px;
+  margin: 0;
+
+  font-size: 17px;
+  line-height: 1.6;
+
+  opacity: 0.6;
+}
+
+/* =========================
+   PRODUCT PREVIEW
+========================= */
+
+.product-preview {
+  margin-top: 100px;
+
+  padding: 20px;
+
+  background: #171717;
+
+  box-shadow: 0 30px 80px rgba(23, 23, 23, 0.18);
+}
+
+/* =========================
+   PRODUCT TOP BAR
+========================= */
+
+.product-topbar {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+
+  align-items: center;
+
+  padding: 12px 10px 25px;
+
+  color: #f2efe8;
+}
+
+.product-brand {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.product-board-name {
+  text-align: center;
+
+  font-size: 11px;
+  letter-spacing: 2px;
+
+  opacity: 0.6;
+}
+
+.product-user {
+  justify-self: end;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 32px;
+  height: 32px;
+
+  border-radius: 50%;
+
+  background: #f2efe8;
+  color: #171717;
+
+  font-size: 10px;
+  font-weight: 700;
+}
+
+/* =========================
+   KANBAN
+========================= */
+
+.kanban {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 12px;
+
+  padding: 12px;
+
+  background: #292621;
+}
+
+.kanban-column {
+  min-height: 440px;
+
+  padding: 16px;
+
+  background: #e7e1d7;
+}
+
+.column-header {
+  display: flex;
+  justify-content: space-between;
+
+  margin-bottom: 20px;
+
+  font-size: 10px;
+  letter-spacing: 2px;
+
+  opacity: 0.55;
+}
+
+/* =========================
+   KANBAN CARDS
+========================= */
+
+.kanban-card {
+  margin-bottom: 12px;
+  padding: 20px;
+
+  background: #f5f1ea;
+
+  border: 1px solid rgba(23, 23, 23, 0.08);
+
+  transition: transform 0.2s ease;
+}
+
+.kanban-card:hover {
+  transform: translateY(-3px);
+}
+
+.kanban-card h3 {
+  margin: 0;
+
+  font-size: 17px;
+  line-height: 1.2;
+
+  letter-spacing: -0.3px;
+}
+
+.kanban-card p {
+  margin: 10px 0 0;
+
+  font-size: 12px;
+  line-height: 1.4;
+
+  opacity: 0.55;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: 22px;
+  padding-top: 12px;
+
+  border-top: 1px solid rgba(23, 23, 23, 0.1);
+
+  font-size: 9px;
+  letter-spacing: 0.5px;
+
+  opacity: 0.5;
+}
+
+.active-card {
+  background: #d8d0c4;
+}
+
+.completed-card {
+  background: #171717;
+  color: #f2efe8;
+}
+
+.completed-card .card-footer {
+  border-color: rgba(242, 239, 232, 0.15);
+}
+
+/* =========================
+   PRODUCT CAPTION
+========================= */
+
+.product-caption {
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: 25px;
+
+  font-size: 10px;
+  letter-spacing: 2px;
+
+  opacity: 0.4;
+}
+
+/* =========================
+   FINAL CTA
+========================= */
+
+.final-cta {
+  min-height: 85vh;
+
+  display: flex;
+  align-items: center;
+
+  padding: 120px 6vw;
+
+  background: #c9bdae;
+  color: #171717;
+}
+
+.final-cta-content {
+  width: 100%;
+}
+
+.final-cta h2 {
+  margin: 0;
+
+  font-size: clamp(55px, 9vw, 140px);
+  line-height: 0.86;
+  letter-spacing: -7px;
+  font-weight: 800;
+}
+
+.final-cta-button {
+  margin-top: 60px;
+
+  border: none;
+  border-radius: 999px;
+
+  padding: 15px 30px;
+
+  background: #171717;
+  color: #f2efe8;
+
+  font-size: 15px;
+
+  cursor: pointer;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+  padding: 70px 6vw 30px;
+
+  background: #171717;
+  color: #f2efe8;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+
+  padding-bottom: 80px;
+}
+
+.footer-logo {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.footer-brand p {
+  margin-top: 20px;
+
+  font-size: 14px;
+  line-height: 1.5;
+
+  opacity: 0.5;
+}
+
+.footer-links {
+  display: flex;
+  gap: 100px;
+}
+
+.footer-links div {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-links span {
+  margin-bottom: 10px;
+
+  font-size: 10px;
+  letter-spacing: 2px;
+
+  opacity: 0.4;
+}
+
+.footer-links a {
+  color: inherit;
+  text-decoration: none;
+
+  font-size: 13px;
+
+  opacity: 0.65;
+
+  transition: opacity 0.2s ease;
+}
+
+.footer-links a:hover {
+  opacity: 1;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+
+  padding-top: 25px;
+
+  border-top: 1px solid rgba(242, 239, 232, 0.12);
+
+  font-size: 9px;
+  letter-spacing: 2px;
+
+  opacity: 0.4;
+}
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  padding-top: 25px;
+
+  border-top: 1px solid rgba(242, 239, 232, 0.12);
+
+  font-size: 9px;
+  letter-spacing: 2px;
+
+  opacity: 0.4;
+}
+
+.footer-bottom > div:first-child {
+  display: flex;
+  gap: 30px;
+}
+
+.footer-maker {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.footer-maker strong {
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: #f2efe8;
+}
+
+.footer-maker em {
+  font-size: 11px;
+  letter-spacing: 0;
+  font-style: normal;
+  opacity: 0.7;
+}
