@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
+import "./Board.css";
 type Board = {
   _id: string;
   name: string;
@@ -104,17 +104,32 @@ function Board() {
   }
 
   return (
-    <main>
-      <h1>{board.name}</h1>
-      <p>{board.description || "No description"}</p>
+    <main className="board-page">
+      <header className="board-header">
+        <div>
+          <p className="section-label">YOUR BOARD</p>
+          <h1>{board.name}</h1>
+          <p>{board.description || "No description"}</p>
+        </div>
 
-      <div>
+        <button className="back-button">← Dashboard</button>
+      </header>
+
+      <section className="lists-container">
         {lists.map((list) => (
-          <div key={list._id}>
-            <h2>{list.name}</h2>
+          <div className="list-column" key={list._id}>
+            <div className="list-header">
+              <h2>{list.name}</h2>
+            </div>
+
+            <div className="cards-container">{/* Cards will come here */}</div>
+
+            <button className="add-card-button">+ Add card</button>
           </div>
         ))}
-      </div>
+
+        <button className="add-list-button">+ Add another list</button>
+      </section>
     </main>
   );
 }
