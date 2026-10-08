@@ -1,0 +1,157 @@
+.dashboard {
+  min-height: 100vh;
+  padding: 50px 6vw;
+  background: #f2efe8;
+  color: #171717;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 80px;
+}
+
+.dashboard-header h1 {
+  margin: 0;
+  font-size: clamp(60px, 8vw, 120px);
+  line-height: 0.88;
+  letter-spacing: -6px;
+}
+
+.create-board-button {
+  border: none;
+  border-radius: 999px;
+  padding: 15px 25px;
+  background: #171717;
+  color: #f2efe8;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.boards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.board-card {
+  min-height: 300px;
+  padding: 25px;
+  background: #e2dbd0;
+  border: 1px solid rgba(23, 23, 23, 0.12);
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.board-card:hover {
+  transform: translateY(-5px);
+}
+
+.board-number {
+  font-size: 10px;
+  letter-spacing: 2px;
+  opacity: 0.45;
+}
+
+.board-card h2 {
+  margin-top: 70px;
+  margin-bottom: 0;
+  font-size: 32px;
+  letter-spacing: -1px;
+}
+
+.board-card p {
+  max-width: 350px;
+  margin-top: 15px;
+  font-size: 14px;
+  line-height: 1.5;
+  opacity: 0.55;
+}
+
+.board-footer {
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid rgba(23, 23, 23, 0.15);
+  font-size: 10px;
+  letter-spacing: 2px;
+  opacity: 0.5;
+}
+
+.empty-state {
+  padding: 100px 0;
+  text-align: center;
+  opacity: 0.6;
+}
+
+.empty-state h2 {
+  font-size: 35px;
+  margin-bottom: 10px;
+}
+
+.empty-state p {
+  font-size: 14px;
+}
+.create-board-form {
+  max-width: 700px;
+  margin-bottom: 70px;
+  padding: 30px;
+  background: #171717;
+  color: #f2efe8;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.create-board-form input {
+  width: 100%;
+  padding: 15px 0;
+
+  border: none;
+  border-bottom: 1px solid rgba(242, 239, 232, 0.3);
+
+  background: transparent;
+  color: #f2efe8;
+
+  outline: none;
+  font-size: 15px;
+}
+
+.create-board-form input::placeholder {
+  color: rgba(242, 239, 232, 0.4);
+}
+
+.create-board-form input:focus {
+  border-bottom-color: #f2efe8;
+}
+
+.create-board-form button {
+  border: none;
+  padding: 14px 20px;
+
+  background: #f2efe8;
+  color: #171717;
+
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.create-board-form button:last-child {
+  background: transparent;
+  color: #f2efe8;
+  border: 1px solid rgba(242, 239, 232, 0.25);
+}
+.create-board-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+.board-card {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
