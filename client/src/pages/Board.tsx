@@ -20,6 +20,9 @@ function Board() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [lists, setLists] = useState<List[]>([]);
+  const [showListForm, setShowListForm] = useState(false);
+  const [listName, setListName] = useState("");
+  const [creatingList, setCreatingList] = useState(false);
 
   useEffect(() => {
     const fetchBoard = async () => {
@@ -91,6 +94,52 @@ function Board() {
 
     fetchLists();
   }, [boardId]);
+
+  const handleCreateList = async () => {
+    if (!listName.trim()) {
+      return;
+    }
+
+    const token = localStorage.getItem("token");
+
+    if (!token || !boardId) {
+      setError("You are not logged in");
+      return;
+    }
+
+    setCreatingList(true);
+    setError("");
+
+    try {
+      const response = await fetch("http://localhost:5000/api/lists", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          name: listName,
+          boardId: boardId,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.message || "Failed to create list");
+        return;
+      }
+
+      setLists((prevLists) => [...prevLists, data.list]);
+
+      setListName("");
+      setShowListForm(false);
+    } catch (error) {
+      setError("Something went wrong");
+    } finally {
+      setCreatingList(false);
+    }
+  };
   if (loading) {
     return <main>Loading board...</main>;
   }
@@ -128,7 +177,31 @@ function Board() {
           </div>
         ))}
 
-        <button className="add-list-button">+ Add another list</button>
+        {showListForm ? (
+          <div className="add-list-form">
+            <input
+              type="text"
+              placeholder="List name"
+              value={listName}
+              onChange={(e) => setListName(e.target.value)}
+            />
+
+            <div className="add-list-actions">
+              <button onClick={handleCreateList} disabled={creatingList}>
+                {creatingList ? "Creating..." : "Add List"}
+              </button>
+
+              <button onClick={() => setShowListForm(false)}>Cancel</button>
+            </div>
+          </div>
+        ) : (
+          <button
+            className="add-list-button"
+            onClick={() => setShowListForm(true)}
+          >
+            + Add another list
+          </button>
+        )}
       </section>
     </main>
   );

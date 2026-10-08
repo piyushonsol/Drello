@@ -121,3 +121,49 @@
 .add-list-button:hover {
   background: #e2dbd0;
 }
+
+.add-list-form {
+  width: 220px;
+  min-width: 220px;
+  padding: 15px;
+  background: #171717;
+}
+
+.add-list-form input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 0;
+  border: none;
+  border-bottom: 1px solid rgba(242, 239, 232, 0.3);
+  background: transparent;
+  color: #f2efe8;
+  outline: none;
+}
+
+.add-list-form input::placeholder {
+  color: rgba(242, 239, 232, 0.4);
+}
+
+.add-list-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.add-list-actions button {
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 11px;
+}
+
+.add-list-actions button:first-child {
+  background: #f2efe8;
+  color: #171717;
+}
+
+.add-list-actions button:last-child {
+  background: transparent;
+  color: #f2efe8;
+  border: 1px solid rgba(242, 239, 232, 0.25);
+}
