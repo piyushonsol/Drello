@@ -29,10 +29,15 @@ router.post("/", authMiddleware, async (req, res) => {
       });
     }
 
+    const lastCard = await Card.findOne({ list: listId }).sort({
+      position: -1,
+    });
+
     const card = new Card({
       title,
       description,
       list: listId,
+      position: lastCard ? lastCard.position + 1 : 0,
     });
 
     await card.save();

@@ -118,7 +118,7 @@ function Board() {
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
-          name: listName,
+          name: listName.trim(),
           boardId: boardId,
         }),
       });
@@ -144,7 +144,7 @@ function Board() {
     return <main>Loading board...</main>;
   }
 
-  if (error) {
+  if (!board && error) {
     return <main>{error}</main>;
   }
 
