@@ -41,7 +41,7 @@ function Login() {
       localStorage.setItem("token", data.token);
 
       navigate("/dashboard");
-    } catch (error) {
+    } catch {
       setError("Something went wrong");
     } finally {
       setLoading(false);
