@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./Board.css";
+
+import { Pencil, Trash2 } from "lucide-react";
 type Board = {
   _id: string;
   name: string;
@@ -417,9 +419,83 @@ function Board() {
                 .sort((a, b) => a.position - b.position)
                 .map((card) => (
                   <div className="card-item" key={card._id}>
-                    <h3>{card.title}</h3>
+                    {editingCardId === card._id ? (
+                      <form
+                        className="edit-card-form"
+                        onSubmit={(event) => {
+                          event.preventDefault();
+                          void handleUpdateCard();
+                        }}
+                      >
+                        <input
+                          type="text"
+                          placeholder="Card title"
+                          value={editCardTitle}
+                          onChange={(event) =>
+                            setEditCardTitle(event.target.value)
+                          }
+                        />
 
-                    {card.description && <p>{card.description}</p>}
+                        <textarea
+                          placeholder="Card description (optional)"
+                          value={editCardDescription}
+                          onChange={(event) =>
+                            setEditCardDescription(event.target.value)
+                          }
+                        />
+
+                        <div className="card-edit-actions">
+                          <button type="submit" disabled={updatingCard}>
+                            {updatingCard ? "Saving..." : "Save changes"}
+                          </button>
+
+                          <button
+                            type="button"
+                            onClick={handleCancelEditCard}
+                            disabled={updatingCard}
+                          >
+                            Cancel
+                          </button>
+                        </div>
+                      </form>
+                    ) : (
+                      <>
+                        <h3>{card.title}</h3>
+
+                        {card.description && <p>{card.description}</p>}
+
+                        <div className="card-actions">
+                          <button
+                            type="button"
+                            className="card-action-button"
+                            aria-label={`Edit ${card.title}`}
+                            title="Edit card"
+                            onClick={() => handleStartEditCard(card)}
+                          >
+                            <Pencil
+                              size={15}
+                              strokeWidth={1.8}
+                              aria-hidden="true"
+                            />
+                          </button>
+
+                          <button
+                            type="button"
+                            className="card-action-button card-delete-button"
+                            aria-label={`Delete ${card.title}`}
+                            title="Delete card"
+                            onClick={() => handleDeleteCard(card._id)}
+                            disabled={deletingCardId === card._id}
+                          >
+                            <Trash2
+                              size={15}
+                              strokeWidth={1.8}
+                              aria-hidden="true"
+                            />
+                          </button>
+                        </div>
+                      </>
+                    )}
                   </div>
                 ))}
             </div>

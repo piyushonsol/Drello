@@ -485,3 +485,123 @@
     animation-duration: 0.01ms !important;
   }
 }
+
+/* Card action buttons */
+
+.card-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 5px;
+  margin-top: 13px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(23, 23, 23, 0.12);
+  opacity: 0.65;
+  transition: opacity 0.2s ease;
+}
+
+.card-item:hover .card-actions,
+.card-item:focus-within .card-actions {
+  opacity: 1;
+}
+
+.card-action-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #171717;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.card-action-button:hover:not(:disabled) {
+  border-color: rgba(23, 23, 23, 0.15);
+  background: rgba(23, 23, 23, 0.06);
+}
+
+.card-delete-button {
+  color: #9a3930;
+}
+
+.card-delete-button:hover:not(:disabled) {
+  border-color: rgba(154, 57, 48, 0.2);
+  background: rgba(154, 57, 48, 0.08);
+}
+
+.card-action-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Inline edit form */
+
+.edit-card-form {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.edit-card-form input,
+.edit-card-form textarea {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 10px;
+  border: 1px solid rgba(23, 23, 23, 0.2);
+  border-radius: 0;
+  outline: none;
+  background: #f2efe8;
+  color: #171717;
+  font-size: 12px;
+}
+
+.edit-card-form textarea {
+  min-height: 75px;
+  resize: vertical;
+}
+
+.edit-card-form input:focus,
+.edit-card-form textarea:focus {
+  border-color: #171717;
+}
+
+.card-edit-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.card-edit-actions button {
+  padding: 9px 11px;
+  border: 1px solid #171717;
+  background: #171717;
+  color: #f2efe8;
+  cursor: pointer;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.card-edit-actions button:last-child {
+  background: transparent;
+  color: #171717;
+}
+
+.card-edit-actions button:hover:not(:disabled) {
+  opacity: 0.75;
+}
+
+.card-edit-actions button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
