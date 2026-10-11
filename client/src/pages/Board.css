@@ -605,3 +605,118 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+/* List header action icons */
+
+.list-header {
+  gap: 10px;
+}
+
+.list-header h2 {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.list-header-actions {
+  display: flex;
+  flex-shrink: 0;
+  gap: 5px;
+  opacity: 0.65;
+  transition: opacity 0.2s ease;
+}
+
+.list-header:hover .list-header-actions,
+.list-header:focus-within .list-header-actions {
+  opacity: 1;
+}
+
+.list-action-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #171717;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.list-action-button:hover:not(:disabled) {
+  border-color: rgba(23, 23, 23, 0.15);
+  background: rgba(23, 23, 23, 0.06);
+}
+
+.list-delete-button {
+  color: #9a3930;
+}
+
+.list-delete-button:hover:not(:disabled) {
+  border-color: rgba(154, 57, 48, 0.2);
+  background: rgba(154, 57, 48, 0.08);
+}
+
+.list-action-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Inline list editing */
+
+.edit-list-form {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.edit-list-form input {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 8px 9px;
+  border: 1px solid rgba(23, 23, 23, 0.25);
+  border-radius: 0;
+  outline: none;
+  background: #f2efe8;
+  color: #171717;
+  font-size: 13px;
+}
+
+.edit-list-form input:focus {
+  border-color: #171717;
+}
+
+.list-edit-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.list-edit-actions button {
+  padding: 7px 9px;
+  border: 1px solid #171717;
+  background: #171717;
+  color: #f2efe8;
+  cursor: pointer;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.list-edit-actions button:last-child {
+  background: transparent;
+  color: #171717;
+}
+
+.list-edit-actions button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

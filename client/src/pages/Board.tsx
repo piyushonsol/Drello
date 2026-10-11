@@ -45,6 +45,11 @@ function Board() {
   const [updatingCard, setUpdatingCard] = useState(false);
   const [deletingCardId, setDeletingCardId] = useState<string | null>(null);
 
+  const [editingListId, setEditingListId] = useState<string | null>(null);
+  const [editListName, setEditListName] = useState("");
+  const [updatingList, setUpdatingList] = useState(false);
+  const [deletingListId, setDeletingListId] = useState<string | null>(null);
+
   // first get the board details and then get the lists for that board and then get the cards for all the lists .
   useEffect(() => {
     const fetchBoard = async () => {
@@ -382,6 +387,124 @@ function Board() {
     }
   };
 
+  const handleStartEditList = (list: List) => {
+    setEditingListId(list._id);
+    setEditListName(list.name);
+    setError("");
+  };
+
+  const handleCancelEditList = () => {
+    setEditingListId(null);
+    setEditListName("");
+  };
+
+  const handleUpdateList = async () => {
+    if (!editingListId || !editListName.trim()) {
+      setError("List name cannot be empty");
+      return;
+    }
+
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      setError("You are not logged in");
+      return;
+    }
+
+    const listId = editingListId;
+
+    setUpdatingList(true);
+    setError("");
+
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/lists/${listId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            name: editListName.trim(),
+          }),
+        },
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.message || "Failed to update list");
+        return;
+      }
+
+      setLists((prevLists) =>
+        prevLists.map((list) => (list._id === listId ? data.list : list)),
+      );
+
+      handleCancelEditList();
+    } catch {
+      setError("Something went wrong while updating the list");
+    } finally {
+      setUpdatingList(false);
+    }
+  };
+
+  const handleDeleteList = async (listId: string) => {
+    const confirmed = window.confirm("Delete this list and all its cards?");
+
+    if (!confirmed) {
+      return;
+    }
+
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      setError("You are not logged in");
+      return;
+    }
+
+    setDeletingListId(listId);
+    setError("");
+
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/lists/${listId}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.message || "Failed to delete list");
+        return;
+      }
+
+      setLists((prevLists) => prevLists.filter((list) => list._id !== listId));
+
+      setCards((prevCards) => prevCards.filter((card) => card.list !== listId));
+
+      if (activeListId === listId) {
+        setActiveListId(null);
+        setCardTitle("");
+        setCardDescription("");
+      }
+
+      if (editingListId === listId) {
+        handleCancelEditList();
+      }
+    } catch {
+      setError("Something went wrong while deleting the list");
+    } finally {
+      setDeletingListId(null);
+    }
+  };
+
   if (loading) {
     return <main>Loading board...</main>;
   }
@@ -410,7 +533,64 @@ function Board() {
         {lists.map((list) => (
           <div className="list-column" key={list._id}>
             <div className="list-header">
-              <h2>{list.name}</h2>
+              {editingListId === list._id ? (
+                <form
+                  className="edit-list-form"
+                  onSubmit={(event) => {
+                    event.preventDefault();
+                    void handleUpdateList();
+                  }}
+                >
+                  <input
+                    type="text"
+                    value={editListName}
+                    onChange={(event) => setEditListName(event.target.value)}
+                    placeholder="List name"
+                    autoFocus
+                  />
+
+                  <div className="list-edit-actions">
+                    <button type="submit" disabled={updatingList}>
+                      {updatingList ? "Saving..." : "Save"}
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={handleCancelEditList}
+                      disabled={updatingList}
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </form>
+              ) : (
+                <>
+                  <h2>{list.name}</h2>
+
+                  <div className="list-header-actions">
+                    <button
+                      type="button"
+                      className="list-action-button"
+                      aria-label={`Edit ${list.name}`}
+                      title="Edit list"
+                      onClick={() => handleStartEditList(list)}
+                    >
+                      <Pencil size={15} strokeWidth={1.8} aria-hidden="true" />
+                    </button>
+
+                    <button
+                      type="button"
+                      className="list-action-button list-delete-button"
+                      aria-label={`Delete ${list.name}`}
+                      title="Delete list"
+                      onClick={() => handleDeleteList(list._id)}
+                      disabled={deletingListId === list._id}
+                    >
+                      <Trash2 size={15} strokeWidth={1.8} aria-hidden="true" />
+                    </button>
+                  </div>
+                </>
+              )}
             </div>
 
             <div className="cards-container">

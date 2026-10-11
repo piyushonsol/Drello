@@ -4,6 +4,7 @@ const router = express.Router();
 const List = require("../models/List");
 const Board = require("../models/Board");
 const authMiddleware = require("../middleware/authMiddleware");
+const Card = require("../models/Card");
 
 router.post("/", authMiddleware, async (req, res) => {
   try {
@@ -136,6 +137,7 @@ router.put("/:id", authMiddleware, async (req, res) => {
 
 router.delete("/:id", authMiddleware, async (req, res) => {
   try {
+
     const list = await List.findById(req.params.id);
 
     if (!list) {
@@ -154,13 +156,14 @@ router.delete("/:id", authMiddleware, async (req, res) => {
         message: "List not found",
       });
     }
+    await Card.deleteMany({ list: list._id });
+await List.findByIdAndDelete(list._id);
 
-    await List.findByIdAndDelete(req.params.id);
+return res.status(200).json({
+  message: "List and its cards deleted successfully",
+});
 
-    return res.status(200).json({
-      message: "List deleted successfully",
-    });
-  } catch (error) {
+   catch (error) {
     return res.status(500).json({
       message: "Error deleting list",
     });
