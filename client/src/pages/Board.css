@@ -1,160 +1,384 @@
+/* =========================================
+   DRELLO — BOARD PAGE
+   Visual system: warm editorial / brutalist
+   ========================================= */
+
 .board-page {
   min-height: 100vh;
-  padding: 50px 6vw;
+  padding: 36px 5vw 60px;
   background: #f2efe8;
   color: #171717;
+  font-family: inherit;
 }
 
-/* HEADER */
+.board-page *,
+.board-page *::before,
+.board-page *::after {
+  box-sizing: border-box;
+}
+
+.board-page button,
+.board-page input,
+.board-page textarea {
+  font: inherit;
+}
+
+/* ---------- HEADER ---------- */
 
 .board-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  margin-bottom: 70px;
+  gap: 30px;
+  padding-bottom: 32px;
+  margin-bottom: 38px;
+  border-bottom: 1px solid rgba(23, 23, 23, 0.2);
+}
+
+.board-header > div {
+  min-width: 0;
+}
+
+.board-header .section-label {
+  margin: 0 0 20px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  opacity: 0.5;
 }
 
 .board-header h1 {
-  margin: 8px 0 15px;
-  font-size: clamp(50px, 7vw, 100px);
-  line-height: 0.9;
-  letter-spacing: -5px;
+  margin: 0;
+  max-width: 900px;
+  overflow-wrap: anywhere;
+  font-size: clamp(44px, 6vw, 88px);
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: -4px;
 }
 
 .board-header > div > p:last-child {
-  max-width: 500px;
-  margin: 0;
+  margin: 18px 0 0;
+  max-width: 520px;
   font-size: 14px;
-  line-height: 1.5;
-  opacity: 0.55;
-}
-
-.section-label {
-  margin: 0;
-  font-size: 10px;
-  letter-spacing: 2px;
-  opacity: 0.45;
+  line-height: 1.7;
+  color: rgba(23, 23, 23, 0.62);
 }
 
 .back-button {
-  border: none;
-  padding: 12px 0;
+  flex-shrink: 0;
+  padding: 13px 19px;
+  border: 1px solid rgba(23, 23, 23, 0.25);
+  border-radius: 999px;
   background: transparent;
   color: #171717;
+  font-size: 11px !important;
+  letter-spacing: 0.8px;
   cursor: pointer;
-  font-size: 11px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
 }
 
-/* LISTS */
+.back-button:hover {
+  background: #171717;
+  color: #f2efe8;
+}
+
+/* ---------- BOARD COLUMNS ---------- */
 
 .lists-container {
   display: flex;
   align-items: flex-start;
-  gap: 20px;
+  gap: 17px;
+  width: 100%;
+  min-height: 420px;
   overflow-x: auto;
-  padding-bottom: 40px;
+  padding: 3px 2px 24px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(23, 23, 23, 0.3) transparent;
+}
+
+.lists-container::-webkit-scrollbar {
+  height: 7px;
+}
+
+.lists-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.lists-container::-webkit-scrollbar-thumb {
+  background: rgba(23, 23, 23, 0.25);
 }
 
 .list-column {
-  width: 300px;
-  min-width: 300px;
-  min-height: 300px;
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 300px;
+  min-width: 0;
+  min-height: 310px;
+  padding: 19px;
   background: #e2dbd0;
-  border: 1px solid rgba(23, 23, 23, 0.12);
+  border: 1px solid rgba(23, 23, 23, 0.15);
+  transition: border-color 0.2s ease;
 }
 
+.list-column:hover {
+  border-color: rgba(23, 23, 23, 0.32);
+}
+
+/* ---------- LIST HEADING ---------- */
+
 .list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 39px;
   padding-bottom: 15px;
-  border-bottom: 1px solid rgba(23, 23, 23, 0.15);
+  border-bottom: 1px solid rgba(23, 23, 23, 0.2);
 }
 
 .list-header h2 {
   margin: 0;
-  font-size: 18px;
-  letter-spacing: -0.5px;
-  font-weight: 500;
+  overflow-wrap: anywhere;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.4px;
 }
 
+/* ---------- CARD COLLECTION ---------- */
+
 .cards-container {
-  min-height: 150px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 120px;
   padding: 15px 0;
 }
 
-/* ADD CARD */
+/* ---------- INDIVIDUAL CARDS ---------- */
+
+.card-item {
+  padding: 16px;
+  background: #f2efe8;
+  border: 1px solid rgba(23, 23, 23, 0.12);
+  overflow-wrap: anywhere;
+  transition:
+    transform 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.card-item:hover {
+  transform: translateY(-2px);
+  border-color: rgba(23, 23, 23, 0.4);
+  box-shadow: 3px 3px 0 rgba(23, 23, 23, 0.06);
+}
+
+.card-item h3 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: -0.2px;
+}
+
+.card-item p {
+  margin: 9px 0 0;
+  font-size: 12px;
+  line-height: 1.65;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  color: rgba(23, 23, 23, 0.62);
+}
+
+/* ---------- ADD CARD BUTTON ---------- */
 
 .add-card-button {
+  display: block;
   width: 100%;
-  padding: 12px 0 5px;
+  padding: 12px 0 3px;
   border: none;
-  border-top: 1px solid rgba(23, 23, 23, 0.12);
+  border-top: 1px solid rgba(23, 23, 23, 0.16);
   background: transparent;
-  color: #171717;
+  color: rgba(23, 23, 23, 0.68);
   text-align: left;
+  font-size: 10px !important;
+  font-weight: 600;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
   cursor: pointer;
-  font-size: 10px;
-  letter-spacing: 1.5px;
-  opacity: 0.5;
+  transition: color 0.2s ease;
 }
 
 .add-card-button:hover {
-  opacity: 1;
-}
-
-/* ADD LIST */
-
-.add-list-button {
-  width: 220px;
-  min-width: 220px;
-  height: 55px;
-  border: 1px dashed rgba(23, 23, 23, 0.3);
-  background: transparent;
   color: #171717;
-  cursor: pointer;
-  font-size: 10px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
 }
 
-.add-list-button:hover {
+/* ---------- ADD CARD FORM ---------- */
+
+.add-card-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 2px;
+  padding: 16px;
+  background: #171717;
+  color: #f2efe8;
+}
+
+.add-card-form input,
+.add-card-form textarea {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  padding: 11px 0;
+  border: none;
+  border-bottom: 1px solid rgba(242, 239, 232, 0.3);
+  border-radius: 0;
+  outline: none;
+  background: transparent;
+  color: #f2efe8;
+  font-size: 13px !important;
+  line-height: 1.5;
+}
+
+.add-card-form textarea {
+  min-height: 78px;
+  resize: vertical;
+}
+
+.add-card-form input::placeholder,
+.add-card-form textarea::placeholder {
+  color: rgba(242, 239, 232, 0.48);
+}
+
+.add-card-form input:focus,
+.add-card-form textarea:focus {
+  border-bottom-color: #f2efe8;
+}
+
+.add-card-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 3px;
+}
+
+.add-card-actions button {
+  min-height: 36px;
+  padding: 9px 13px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-size: 10px !important;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.add-card-actions button:first-child {
+  background: #f2efe8;
+  color: #171717;
+}
+
+.add-card-actions button:first-child:hover {
   background: #e2dbd0;
 }
 
-.add-list-form {
-  width: 220px;
-  min-width: 220px;
+.add-card-actions button:last-child {
+  border-color: rgba(242, 239, 232, 0.25);
+  background: transparent;
+  color: #f2efe8;
+}
+
+.add-card-actions button:last-child:hover {
+  border-color: #f2efe8;
+}
+
+.add-card-actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* ---------- ADD LIST BUTTON ---------- */
+
+.add-list-button {
+  flex: 0 0 220px;
+  min-height: 55px;
   padding: 15px;
+  border: 1px dashed rgba(23, 23, 23, 0.38);
+  background: transparent;
+  color: #171717;
+  text-align: left;
+  font-size: 10px !important;
+  font-weight: 600;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.add-list-button:hover {
+  border-color: #171717;
+  background: #e2dbd0;
+}
+
+/* ---------- ADD LIST FORM ---------- */
+
+.add-list-form {
+  display: flex;
+  flex: 0 0 220px;
+  flex-direction: column;
+  gap: 14px;
+  padding: 16px;
   background: #171717;
+  color: #f2efe8;
 }
 
 .add-list-form input {
   width: 100%;
-  box-sizing: border-box;
-  padding: 10px 0;
+  min-width: 0;
+  padding: 11px 0;
   border: none;
   border-bottom: 1px solid rgba(242, 239, 232, 0.3);
+  border-radius: 0;
+  outline: none;
   background: transparent;
   color: #f2efe8;
-  outline: none;
+  font-size: 13px !important;
 }
 
 .add-list-form input::placeholder {
-  color: rgba(242, 239, 232, 0.4);
+  color: rgba(242, 239, 232, 0.48);
+}
+
+.add-list-form input:focus {
+  border-bottom-color: #f2efe8;
 }
 
 .add-list-actions {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
-  margin-top: 15px;
 }
 
 .add-list-actions button {
-  border: none;
-  padding: 8px 12px;
+  padding: 9px 12px;
+  border: 1px solid transparent;
   cursor: pointer;
-  font-size: 11px;
+  font-size: 10px !important;
+  font-weight: 600;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
 }
 
 .add-list-actions button:first-child {
@@ -162,8 +386,102 @@
   color: #171717;
 }
 
+.add-list-actions button:first-child:hover {
+  background: #e2dbd0;
+}
+
 .add-list-actions button:last-child {
+  border-color: rgba(242, 239, 232, 0.25);
   background: transparent;
   color: #f2efe8;
-  border: 1px solid rgba(242, 239, 232, 0.25);
+}
+
+.add-list-actions button:last-child:hover {
+  border-color: #f2efe8;
+}
+
+.add-list-actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* ---------- ERROR MESSAGE ---------- */
+
+.board-error {
+  margin: -15px 0 25px;
+  padding: 13px 16px;
+  border-left: 3px solid #a83c30;
+  background: rgba(168, 60, 48, 0.07);
+  color: #8b3027;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* ---------- KEYBOARD ACCESSIBILITY ---------- */
+
+.board-page button:focus-visible {
+  outline: 2px solid #171717;
+  outline-offset: 3px;
+}
+
+.add-card-form button:focus-visible,
+.add-list-form button:focus-visible {
+  outline-color: #f2efe8;
+}
+
+/* ---------- RESPONSIVE LAYOUT ---------- */
+
+@media (max-width: 768px) {
+  .board-page {
+    padding: 27px 5vw 40px;
+  }
+
+  .board-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 22px;
+    margin-bottom: 27px;
+    padding-bottom: 25px;
+  }
+
+  .board-header .section-label {
+    margin-bottom: 15px;
+  }
+
+  .board-header h1 {
+    font-size: clamp(42px, 10vw, 68px);
+    letter-spacing: -2.5px;
+  }
+
+  .board-header > div > p:last-child {
+    margin-top: 13px;
+  }
+
+  .back-button {
+    align-self: flex-start;
+  }
+
+  .lists-container {
+    gap: 12px;
+  }
+
+  .list-column {
+    flex-basis: min(300px, 82vw);
+    padding: 15px;
+  }
+
+  .add-list-button,
+  .add-list-form {
+    flex-basis: 200px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .board-page *,
+  .board-page *::before,
+  .board-page *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }

@@ -244,7 +244,7 @@ function Board() {
       const data = await response.json();
 
       if (!response.ok) {
-        setError(data.message || "Failed to create list");
+        setError(data.message || "Failed to create card");
         return;
       }
 
