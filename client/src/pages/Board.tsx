@@ -37,6 +37,11 @@ function Board() {
   const [activeListId, setActiveListId] = useState<string | null>(null);
   const [cardTitle, setCardTitle] = useState("");
   const [cardDescription, setCardDescription] = useState("");
+  const [editingCardId, setEditingCardId] = useState<string | null>(null);
+  const [editCardTitle, setEditCardTitle] = useState("");
+  const [editCardDescription, setEditCardDescription] = useState("");
+  const [updatingCard, setUpdatingCard] = useState(false);
+  const [deletingCardId, setDeletingCardId] = useState<string | null>(null);
 
   // first get the board details and then get the lists for that board and then get the cards for all the lists .
   useEffect(() => {
@@ -257,6 +262,121 @@ function Board() {
       setError("Something went wrong");
     } finally {
       setCreatingCard(false);
+    }
+  };
+
+  const handleStartEditCard = (card: Card) => {
+    setEditingCardId(card._id);
+    setEditCardTitle(card.title);
+    setEditCardDescription(card.description ?? "");
+    setError("");
+  };
+
+  const handleCancelEditCard = () => {
+    setEditingCardId(null);
+    setEditCardTitle("");
+    setEditCardDescription("");
+  };
+
+  const handleUpdateCard = async () => {
+    if (!editingCardId) {
+      return;
+    }
+
+    if (!editCardTitle.trim()) {
+      setError("Card title cannot be empty");
+      return;
+    }
+
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      setError("You are not logged in");
+      return;
+    }
+
+    const cardId = editingCardId;
+
+    setUpdatingCard(true);
+    setError("");
+
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/cards/${cardId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            title: editCardTitle.trim(),
+            description: editCardDescription.trim(),
+          }),
+        },
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.message || "Failed to update card");
+        return;
+      }
+
+      setCards((prevCards) =>
+        prevCards.map((card) => (card._id === cardId ? data.card : card)),
+      );
+
+      handleCancelEditCard();
+    } catch {
+      setError("Something went wrong while updating the card");
+    } finally {
+      setUpdatingCard(false);
+    }
+  };
+
+  const handleDeleteCard = async (cardId: string) => {
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this card?",
+    );
+
+    if (!confirmed) {
+      return;
+    }
+
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      setError("You are not logged in");
+      return;
+    }
+
+    setDeletingCardId(cardId);
+    setError("");
+
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/cards/${cardId}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.message || "Failed to delete card");
+        return;
+      }
+
+      setCards((prevCards) => prevCards.filter((card) => card._id !== cardId));
+    } catch {
+      setError("Something went wrong while deleting the card");
+    } finally {
+      setDeletingCardId(null);
     }
   };
 
