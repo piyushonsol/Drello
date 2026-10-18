@@ -137,7 +137,6 @@ router.put("/:id", authMiddleware, async (req, res) => {
 
 router.delete("/:id", authMiddleware, async (req, res) => {
   try {
-
     const list = await List.findById(req.params.id);
 
     if (!list) {
@@ -157,13 +156,12 @@ router.delete("/:id", authMiddleware, async (req, res) => {
       });
     }
     await Card.deleteMany({ list: list._id });
-await List.findByIdAndDelete(list._id);
+    await List.findByIdAndDelete(list._id);
 
-return res.status(200).json({
-  message: "List and its cards deleted successfully",
-});
-
-   catch (error) {
+    return res.status(200).json({
+      message: "List and its cards deleted successfully",
+    });
+  } catch (error) {
     return res.status(500).json({
       message: "Error deleting list",
     });
