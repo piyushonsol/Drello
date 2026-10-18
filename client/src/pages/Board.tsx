@@ -516,27 +516,26 @@ function Board() {
 
     if (!source || !target || !isSortable(source)) return;
 
-    const initialGroup = String(source.initialGroup ?? "");
-    const initialIndex = source.initialIndex;
+    const sourceListId = String(source.group ?? "");
+    const sourceIndex = source.index;
 
-    let targetGroup: string;
+    let targetListId: string;
     let targetIndex: number;
 
     if (isSortable(target)) {
-      targetGroup = String(target.group ?? "");
-      targetIndex = source.index;
+      targetListId = String(target.group ?? "");
+      targetIndex = target.index;
     } else if (typeof target.id === "string" && target.id.startsWith("list:")) {
-      targetGroup = target.id.slice("list:".length);
-
-      // Dropping onto a list container appends the card.
-      targetIndex = cards.filter((card) => card.list === targetGroup).length;
+      targetListId = target.id.slice("list:".length);
+      targetIndex = cards.filter((card) => card.list === targetListId).length;
     } else {
       return;
     }
 
-    if (!initialGroup || !targetGroup) return;
+    if (!sourceListId || !targetListId) return;
 
     const previousCards = cards;
+
     const grouped = new Map<string, Card[]>();
 
     for (const list of lists) {
@@ -548,20 +547,27 @@ function Board() {
       );
     }
 
-    const sourceCards = grouped.get(initialGroup);
-    const targetCards = grouped.get(targetGroup);
+    const sourceCards = grouped.get(sourceListId);
+    const targetCards = grouped.get(targetListId);
 
     if (!sourceCards || !targetCards) return;
 
-    const [movedCard] = sourceCards.splice(initialIndex, 1);
+    // Remove the card from its original position.
+    const [movedCard] = sourceCards.splice(sourceIndex, 1);
 
     if (!movedCard) return;
 
-    const insertAt = Math.max(0, Math.min(targetIndex, targetCards.length));
+    // Adjust the destination index after removal when
+    // moving within the same list.
+    if (sourceListId === targetListId && sourceIndex < targetIndex) {
+      targetIndex--;
+    }
 
-    targetCards.splice(insertAt, 0, {
+    targetIndex = Math.max(0, Math.min(targetIndex, targetCards.length));
+
+    targetCards.splice(targetIndex, 0, {
       ...movedCard,
-      list: targetGroup,
+      list: targetListId,
     });
 
     const updatedCards = lists.flatMap((list) =>
@@ -572,7 +578,6 @@ function Board() {
       })),
     );
 
-    // Update the UI immediately.
     setCards(updatedCards);
     setError("");
 
