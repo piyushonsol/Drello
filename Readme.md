@@ -102,14 +102,15 @@ This history is what separates Drello from a basic Trello clone.
 
 ```text
 Drello
-├── client/        React + TypeScript + Vite
-├── server/
-│   ├── models/
-│   ├── routes/
-│   ├── middleware/
-│   ├── .env
-│   └── server.js
-└── README.md
+├── frontend/      React + TypeScript + Vite feature structure
+├── backend/       Express + Mongoose modular source structure
+│   └── src/
+│       ├── config/
+│       ├── middleware/
+│       ├── modules/
+│       └── server.js
+├── Readme.md
+└── READMEHELP.md
 ```
 
 Data flow:
@@ -328,11 +329,11 @@ cd Drello
 ### Backend
 
 ```bash
-cd server
+cd backend
 npm install
 ```
 
-Create a `.env` file in `server/`:
+Create a `.env` file in `backend/`:
 
 ```env
 MONGO_URI=your_mongodb_connection_string
@@ -342,7 +343,7 @@ JWT_SECRET=your_jwt_secret
 Start the server:
 
 ```bash
-node server.js
+npm start
 ```
 
 The backend runs on `http://localhost:5000`.
@@ -352,7 +353,7 @@ The backend runs on `http://localhost:5000`.
 In a second terminal:
 
 ```bash
-cd client
+cd frontend
 npm install
 npm run dev
 ```
